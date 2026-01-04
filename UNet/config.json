@@ -1,0 +1,45 @@
+{
+	"dataset": {
+		"images_folder": "F:/BrainTumors/IXI/IXI-T1",
+		"labels_folder": "F:/BrainTumors/IXI/IXI-T1-segmented",
+		"rem_max_files": 4
+	},		
+	"rem_model": {
+		"name": "attentionunet",
+		"channels" : 2,
+		"filters": [ 8, 16, 24, 48, 96 ],
+		"input_shape": [ 150, 256, 256 ],
+		"roi_shape": [ 128, 128, -1],
+		"batch_size": 2,
+		"base_learning_rate": 1e-3,
+		"train_test_split": 0.95,
+		"dropout": 0.33
+	},
+	"model": {
+		"name": "unet",
+		"channels_in" : 1,
+		"channels_out": 11,
+		"filters": [ 16, 32, 64, 128, 256 ],
+		"input_shape": [ 150, 256, 256 ],
+		"roi_shape": [ 128, 128, 128],
+		"batch_size": 1,
+		"sw_batch_size": 1,
+		"num_res_units": 2,
+		"base_learning_rate": 1e-3,
+		"train_test_split": 0.80,
+		"dropout": 0.10
+	},
+	"checkpoints": {
+		"restore": "unet_w_tumor.pth",
+		"save": "unet_w_tumor.pth",
+		"test": "unet_dot90.pth"
+	},
+	"rem_checkpoints": {
+		"rem_restore": "aunet_8_16_24_48_96_$_256_256_288_$_128_128_-1_dot4753.pth",
+		"save": "nov17.pth",
+		"rem_test": "checkpoints_nov12_1\\checkpoint_2.pth"
+	},
+	"rem_test_and_convert": {
+		"checkpoint": "aunet_8_16_24_48_96_$_256_256_288_$_128_128_-1_dot4753.pth"
+	}
+}

@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "brain-tumor-segment-transforms"
+version = "0.1.0"
+description = "Transforms utilities for LaserAblation, including FreeSurfer label remapping."
+readme = "README.md"
+authors = [
+  { name = "BrainTumorSegment Team" }
+]
+license = { text = "MIT" }
+requires-python = ">=3.9"
+keywords = ["medical-imaging", "transforms", "brain-tumor", "deep-learning"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+# Core runtime dependencies used by transforms
+# Add or remove as needed if Transforms submodules import other libs
+dependencies = [
+  "numpy>=1.22",
+]
+
+[project.optional-dependencies]
+# If transforms interact with nibabel/torch in some modules, enable via extras
+nib = ["nibabel>=5.0"]
+torch = ["torch>=1.13"]
+
+[tool.setuptools]
+# We will package only the Transforms namespace from this repo
+packages = ["utils", "Transforms", "Transforms.RemapFreeSurfer"]
+
+[tool.setuptools.package-dir]
+# Root-level packages live at repository root
+"" = "."
+
+[tool.setuptools.exclude-package-data]
+# Exclude training and model code from this minimal transforms package
+"UNet" = ["*"]
+
+[tool.setuptools.package-data]
+# Include any non-Python data files within Transforms if present
+"Transforms" = ["**/*.*"]
+
+[tool.setuptools.dynamic]
+# If you later want to derive version dynamically (e.g., from git tag), you can switch to dynamic
+# version = {attr = "Transforms.__version__"}
