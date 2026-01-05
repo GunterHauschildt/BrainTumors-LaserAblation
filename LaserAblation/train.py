@@ -17,18 +17,6 @@ from utils import soft_laser_beam_3d_batched
 import msvcrt
 
 
-
-#
-# def find_ixis(nifti_dir: str | Path) -> list[Path]:
-#
-#     nifti_dir = Path(nifti_dir)
-#     nii_files = sorted(
-#         list(nifti_dir.glob("*.nii")) +
-#         list(nifti_dir.glob("*.nii.gz"))
-#     )
-#     return nii_files
-
-
 def main():
 
     parser = argparse.ArgumentParser()
@@ -70,12 +58,12 @@ def main():
 
     batch_size = 1
 
-    print("Building CacheDataset (train) ...")   # , cache_num=self._cache_size)
+    print("Building Dataset (train) ...")
     train_dataset = monai.data.Dataset(
         data=ixi_paths,
         transform=LaserAblationTransform(args.config_file_name).train_transforms()
     )
-    print(" ... done Building CacheDataset (train) ..., building dataLoader (train)")
+    print(" ... done Building Dataset (train) ..., building DataLoader (train)")
     train_dataloader = DataLoader(train_dataset, batch_size=batch_size,
                                         num_workers=0,
                                         collate_fn=monai.data.pad_list_data_collate)
@@ -121,55 +109,6 @@ def main():
                       f"{int(a0.item())} : {int(a1.item())}    ||    "
                       f"{int(s0.item())} : {int(s1.item())}")
 
-                NAPARI = False
-                if NAPARI and (total_count == 0 or total_count > 100 and b % 10 == 0):
-
-                    viewer = napari.Viewer()
-
-                    # Image.
-                    viewer.add_image(
-                        batch["image"][0].detach().cpu().numpy()[0],
-                        name=f"image"
-                    )
-
-                    # Laser
-                    viewer.add_image(
-                        laser_tensor[0].detach().cpu().numpy(),
-                        name=f"laser"
-                    )
-
-                    # Labels
-                    colors = [
-                        (0.0, 0.0, .2, 1),
-                        (0.1, 0.0, 0, 1),
-                        (0.2, 0.0, 0, 1),
-                        (0.3, 0.0, 0, 1),
-                        (0.4, 0.0, 0, 1),
-                        (0.5, 0.0, 0, 1),
-                        (0.6, 0.0, 0, 1),
-                        (0.7, 0.0, 0, 1),
-                        (0.8, 0.0, 0, 1),
-                        (0.9, 0.0, 0, 1),
-                        (0.0, 1.0, 0, 1),
-                    ]
-                    for l in range(1, 11):
-                        labels = batch["labels"][0][0].detach().cpu().numpy().astype(np.int32)
-                        labels = np.where(labels == l, 1, 0).astype(np.int32)
-
-                        viewer.add_labels(
-                            labels,
-                            name=f"{l}",
-                            color={1: colors[l]}
-                        )
-
-                    # Reward.
-                    r = batch["reward"][0].detach().cpu().numpy()
-                    viewer.add_image(
-                        batch["reward"][0].detach().cpu().numpy(),
-                        name=f"reward"
-                    )
-
-                    napari.run()
 
                 total_count += batch_size
 
