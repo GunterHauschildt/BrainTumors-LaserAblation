@@ -3,19 +3,15 @@
 Preliminary investigation into datasets and techniques for machine learning with respect to laser ablation.  
 This project's goal: Using un-annotated images, find the optimal path for a laser ablation of a tumor.  
    
+### Brain Structures   
 <img width="847" height="732" alt="structures" src="https://github.com/user-attachments/assets/da17a92b-64ba-4a46-b102-73160338b00b" />    
-
-### Brain Structures  
-  
       
+### Tumor   
 <img width="842" height="737" alt="brats_tumor" src="https://github.com/user-attachments/assets/b1dc91ff-c758-41e6-bd57-86e4d4bb8acc" />    
-
-### Tumor  
-  
-      
+        
+### Best Laser Path   
 <img width="857" height="734" alt="laser" src="https://github.com/user-attachments/assets/8101ed47-ff55-4f19-8537-eb2d99772df6" />    
 
-### Best Laser Path  
 
 ## Datasets & Segmentations tools
 Common segmented-tumor datasets are those used for the Brats competitions. The 2020 dataset contains non-nifti data, raw slices, making
