@@ -1,15 +1,20 @@
 # BrainTumors-LaserAblation
 
 Preliminary investigation into datasets and techniques for machine learning with respect to laser ablation.  
-This projects goal: Using un-annotated images, find the optimal path for a laser ablation of a tumor.  
-  
-<img width="847" height="732" alt="structures" src="https://github.com/user-attachments/assets/da17a92b-64ba-4a46-b102-73160338b00b" />  
+This project's goal: Using un-annotated images, find the optimal path for a laser ablation of a tumor.  
+   
+<img width="847" height="732" alt="structures" src="https://github.com/user-attachments/assets/da17a92b-64ba-4a46-b102-73160338b00b" />    
+
 ### Brain Structures  
   
-<img width="842" height="737" alt="brats_tumor" src="https://github.com/user-attachments/assets/b1dc91ff-c758-41e6-bd57-86e4d4bb8acc" />  
+      
+<img width="842" height="737" alt="brats_tumor" src="https://github.com/user-attachments/assets/b1dc91ff-c758-41e6-bd57-86e4d4bb8acc" />    
+
 ### Tumor  
   
-<img width="857" height="734" alt="laser" src="https://github.com/user-attachments/assets/8101ed47-ff55-4f19-8537-eb2d99772df6" />  
+      
+<img width="857" height="734" alt="laser" src="https://github.com/user-attachments/assets/8101ed47-ff55-4f19-8537-eb2d99772df6" />    
+
 ### Best Laser Path  
 
 ## Datasets & Segmentations tools
@@ -35,6 +40,5 @@ Training of the 10 functional groups on FreeSurfer segmented images gives a Dice
 A radiologist's opinion is unavaible to to see if the tumor-extraction-insertion algorithm gives realistive results. It is likely further work is required.    
 Training of the FreeSurfer with tumors gives a Dice score if about .62.  
 ### Laser Ablation  
-Likewise, a simple linear regression 3D CNN is used to calculate the laser path. No metrics are available to determine its performance, but eyeballing, it looks close.  
-
-<img width="853" height="739" alt="mri" src="https://github.com/user-attachments/assets/ab26274e-e9b9-4558-89fb-1ca93e0b9d02" />
+Likewise, a simple linear regression 3D CNN is used to calculate the laser path. No metrics are available to determine its performance, but eyeballing, it looks close.
+With no ground truth, self-supervised learning is used.
