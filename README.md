@@ -12,6 +12,9 @@ This project's goal: Using un-annotated images, find the optimal path for a lase
 ### Best Laser Path   
 <img width="857" height="734" alt="laser" src="https://github.com/user-attachments/assets/8101ed47-ff55-4f19-8537-eb2d99772df6" />    
 
+### 2D Prototype
+A much simpler, 2D blob-based, self-supervised-learning model was trialed. Its trains quickly with only 1000 or so images.  
+https://github.com/user-attachments/assets/5a66bec0-10c6-4b62-826b-48c957aa8e11
 
 ## Datasets & Segmentations tools
 Common segmented-tumor datasets are those used for the Brats competitions. The 2020 dataset contains non-nifti data, raw slices, making
