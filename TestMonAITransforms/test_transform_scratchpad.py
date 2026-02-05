@@ -6,7 +6,7 @@ from Transforms.RelabelFreeSurfer.relabel_transform import RelabelFastSurferByNa
 from Transforms.LoadIXIFreeSurferPair.load_ixi_freesurfer_pair import LoadIXIFreeSurferPair
 from Transforms.RandomTumorInfiltrate.random_tumor_infiltrate import RandomTumorInfiltrate
 from Transforms.ExtractBrainAndSkull.extract_brain_and_skull import ExtractBrainAndSkull
-from Transforms.unet_train_transforms import find_tumors
+from UNet.unet_transforms import find_tumors
 from Transforms.LoadIXIFreeSurferPair.find_ixi_pairs_v1 import find_ixi_pairs_v1
 import napari
 
@@ -17,8 +17,8 @@ import napari
 
 
 # --- paths ---
-fs_lut_path = "//FreeSurferColorLUT.txt"
-mapping_by_name_path = "//Transforms/RelabelFreeSurfer/free_surfer_relabel.json"
+fs_lut_path = "FreeSurferColorLUT.txt"
+mapping_by_name_path = "Transforms/RelabelFreeSurfer/free_surfer_relabel.json"
 image_path = "F:/BrainTumors/IXI/IXI-T1/IXI002-Guys-0828-T1.nii.gz"
 label_path = "F:/BrainTumors/IXI/IXI-T1-segmented/IXI002-Guys-0828-T1.nii/patient_IXI002-Guys-0828-T1.nii/mri/aparc.DKTatlas+aseg.deep.mgz"
 tumor_path = "F:/BrainTumors/BraTS2021_tumors"
@@ -30,32 +30,6 @@ relabel_transform = RelabelFastSurferByName(
     fs_lut_path=fs_lut_path,
     mapping_by_name_path=mapping_by_name_path
 )
-#
-#
-# def find_tumors(root: str | Path, mod) -> List[TumorSamplePaths]:
-#
-#     root = Path(root)
-#     samples: List[TumorSamplePaths] = []
-#
-#     for tumor_dir in root.rglob("*"):
-#         if not tumor_dir.is_dir():
-#             continue
-#
-#         tumor_info_json = tumor_dir / "tumor_info.json"
-#         mask_np = tumor_dir / "mask.npy"
-#         image_np = tumor_dir / "tumor_t1.npy"
-#
-#         if tumor_info_json.exists() and mask_np.exists() and mask_np.exists() and image_np.exists():
-#             samples.append(
-#                 TumorSamplePaths(
-#                     json_file=tumor_info_json,
-#                     mask_np=mask_np,
-#                     image_np=image_np
-#                 )
-#             )
-#
-#     return samples
-#
 
 random_tumor_infiltrate = RandomTumorInfiltrate(
     tumor_channel=10,
@@ -76,7 +50,6 @@ test_transforms = [
 ]
 
 test_transforms = monai.transforms.Compose(test_transforms)
-
 
 ixi_pairs = find_ixi_pairs_v1("F:/BrainTumors/IXI/IXI-T1","F:/BrainTumors/IXI/IXI-T1-segmented")
 
