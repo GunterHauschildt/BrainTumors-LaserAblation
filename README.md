@@ -13,7 +13,8 @@ This project's goal: Using un-annotated images, find the optimal path for a lase
 <img width="857" height="734" alt="laser" src="https://github.com/user-attachments/assets/8101ed47-ff55-4f19-8537-eb2d99772df6" />    
 
 ### 2D Prototype
-A much simpler, 2D blob-based, self-supervised-learning model was trialed. Its trains quickly with only 1000 or so images.    
+A much simpler, 2D blob-based, self-supervised-learning model was trialed. We can see that a simple CNN can be used to find the
+laser path & width (blue) that finds the tumor (red) while avoiding important structures (green).
 
 https://github.com/user-attachments/assets/5fce49ed-5927-40de-bc94-5bc3d4ee98aa
 
