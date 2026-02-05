@@ -146,7 +146,7 @@ video_writer = cv2.VideoWriter(
 NUM_VIDEO_FRAMES = 100
 
 # Training loop
-NUM_TRAINING_FRAMES = 1000
+NUM_TRAINING_FRAMES = 100000
 for step in range(NUM_TRAINING_FRAMES + NUM_VIDEO_FRAMES):
     blob_draw, blob_t = random_blob()
 
@@ -179,8 +179,7 @@ for step in range(NUM_TRAINING_FRAMES + NUM_VIDEO_FRAMES):
         print(f"Step {step}, Loss {loss.item():.3f}")  #, {int(x0)}, {int(y0)}, {int(x1)}, {int(y1)}")
         cv2.imshow("2D Simulation", draw)
         cv2.moveWindow("2D Simulation", 200, 200)
-        if step <= NUM_TRAINING_FRAMES:
-            cv2.waitKey(1)
+        cv2.waitKey(1)
 
     # Save every N
     if step % 1000 == 0:
@@ -188,7 +187,6 @@ for step in range(NUM_TRAINING_FRAMES + NUM_VIDEO_FRAMES):
 
     # write after we've trained
     if step > NUM_TRAINING_FRAMES and draw is not None:
-        if (cv2.waitKey() == ord('g')):
-            video_writer.write(draw)
+        video_writer.write(draw)
 
 cv2.destroyAllWindows()
